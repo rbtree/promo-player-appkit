@@ -12,6 +12,8 @@
 		B326885123674A2100249CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B326885023674A2100249CA6 /* Assets.xcassets */; };
 		B326885423674A2100249CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B326885223674A2100249CA6 /* Main.storyboard */; };
 		B326885D236755B700249CA6 /* PromoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B326885C236755B700249CA6 /* PromoPlayerView.swift */; };
+		B3B1C69F236896C9001C640C /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B1C69E236896C9001C640C /* AVKit.framework */; };
+		B3B1C6A1236896E2001C640C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B1C6A0236896E2001C640C /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		B326885523674A2100249CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B326885623674A2100249CA6 /* Promo_Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Promo_Player.entitlements; sourceTree = "<group>"; };
 		B326885C236755B700249CA6 /* PromoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoPlayerView.swift; sourceTree = "<group>"; };
+		B3B1C69E236896C9001C640C /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		B3B1C6A0236896E2001C640C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3B1C6A1236896E2001C640C /* AppKit.framework in Frameworks */,
+				B3B1C69F236896C9001C640C /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,7 @@
 			children = (
 				B326884B23674A2100249CA6 /* Promo Player */,
 				B326884A23674A2100249CA6 /* Products */,
+				B3B1C69D236896C9001C640C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,15 @@
 				B326885623674A2100249CA6 /* Promo_Player.entitlements */,
 			);
 			path = "Promo Player";
+			sourceTree = "<group>";
+		};
+		B3B1C69D236896C9001C640C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3B1C6A0236896E2001C640C /* AppKit.framework */,
+				B3B1C69E236896C9001C640C /* AVKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +293,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = SJ4RVBA27V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Promo Player/Info.plist";
@@ -285,8 +301,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "rs.rbt.promo-player";
+				PRODUCT_BUNDLE_IDENTIFIER = rs.rbt.promoplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -299,7 +316,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = SJ4RVBA27V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Promo Player/Info.plist";
@@ -307,8 +324,9 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "rs.rbt.promo-player";
+				PRODUCT_BUNDLE_IDENTIFIER = rs.rbt.promoplayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
