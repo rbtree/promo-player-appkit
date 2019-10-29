@@ -42,6 +42,12 @@ class PromoPlayerView: NSView {
         self.playerView.layer!.addSublayer(playerLayer)
         return playerLayer
     }()
+    
+    // MARK: Public properties
+    
+    public var isPlaying: Bool {
+        return self.player?.rate.isEqual(to: 0) == false && self.player?.error == nil
+    }
 
     // MARK: Public functions
     
@@ -63,6 +69,7 @@ class PromoPlayerView: NSView {
     }
         
     public func play() {
+        self.playerView!.isHidden = false
         self.player?.play()
     }
     
@@ -71,7 +78,7 @@ class PromoPlayerView: NSView {
     }
     
     public func toggle() {
-        if self.player?.rate.isEqual(to: 0) == false && self.player?.error == nil {
+        if isPlaying {
             pause()
         }
         else {
@@ -150,7 +157,7 @@ class PromoPlayerView: NSView {
 
     override func layout() {
         super.layout()
-        
+                
         self.playerLayer?.frame = self.playerView.bounds
     }
     
@@ -182,6 +189,12 @@ class PromoPlayerView: NSView {
         case "f":
             handled = true
             window?.toggleFullScreen(self)
+        case "c":
+            handled = true
+            NSCursor.setHiddenUntilMouseMoves(true)
+        case "x":
+            handled = true
+            self.clear()
         case " ":
             handled = true
             self.toggle()
@@ -189,7 +202,7 @@ class PromoPlayerView: NSView {
             break
         }
         
-        if handled {
+        if !handled {
             super.keyDown(with: event)
         }
     }
