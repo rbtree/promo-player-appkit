@@ -1,5 +1,5 @@
 //
-//  DragDestinationView.swift
+//  PromoPlayerView.swift
 //  Promo Player
 //
 //  Created by Srdjan Markovic on 28/10/2019.
@@ -11,20 +11,21 @@ import AppKit
 import AVKit
 
 @objc protocol PromoPlayerViewDelegate: AnyObject {
-    func draggingEntered(forDragDestinationView dragDestinationView: PromoPlayerView, sender: NSDraggingInfo) -> NSDragOperation
-    func performDragOperation(forDragDestinationView dragDestinationView: PromoPlayerView, sender: NSDraggingInfo) -> Bool
+    func draggingEntered(forView view: PromoPlayerView, sender: NSDraggingInfo) -> NSDragOperation
+    func performDragOperation(forView view: PromoPlayerView, sender: NSDraggingInfo) -> Bool
 }
 
 class PromoPlayerView: NSView {
 
     // MARK: Private outlet variables
-    
-    @IBOutlet weak var progressIndicator: NSProgressIndicator!
-    @IBOutlet weak var playerView: AVPlayerView!
 
     @IBOutlet weak var delegate: PromoPlayerViewDelegate?
 
-    // MARK: Public properties
+    @IBOutlet weak var playerView: AVPlayerView!
+    
+    //@IBOutlet weak var progressIndicator: NSProgressIndicator!
+
+    // MARK: Private variables
     
     var isHighlighted: Bool = false {
         didSet {
@@ -33,7 +34,14 @@ class PromoPlayerView: NSView {
     }
 
     var player: AVQueuePlayer?
-    var playerLayer: AVPlayerLayer?
+    lazy var playerLayer: AVPlayerLayer? = {
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.playerView.bounds
+        playerLayer.videoGravity = .resizeAspectFill
+
+        self.playerView.layer!.addSublayer(playerLayer)
+        return playerLayer
+    }()
 
     // MARK: Public functions
     
@@ -51,22 +59,24 @@ class PromoPlayerView: NSView {
         let asset = AVAsset(url: url)
         let playerItem = AVPlayerItem(asset: asset)
         self.player?.insert(playerItem, after: self.player?.items().last)
-        
         self.play()
     }
         
     public func play() {
-        // TODO: better init
-        if self.playerLayer == nil {
-            let playerLayer = AVPlayerLayer(player: player)
-            playerLayer.frame = self.playerView!.bounds
-            playerLayer.videoGravity = .resizeAspect
-
-            self.playerView!.layer!.addSublayer(playerLayer)
-            self.playerLayer = playerLayer
-        }
-
         self.player?.play()
+    }
+    
+    public func pause() {
+        self.player?.pause()
+    }
+    
+    public func toggle() {
+        if self.player?.rate.isEqual(to: 0) == false && self.player?.error == nil {
+            pause()
+        }
+        else {
+            play()
+        }
     }
     
     // MARK: Initializers
@@ -110,10 +120,8 @@ class PromoPlayerView: NSView {
     //                if let progressIndicator = self?.progressIndicator {
     //                    if newStatus == .playing || newStatus == .paused {
     //                        progressIndicator.isHidden = true
-    //                        progressIndicator.stopAnimation(self)
     //                    } else {
     //                        progressIndicator.isHidden = false
-    //                        progressIndicator.startAnimation(self)
     //                    }
     //                }
     //            }
@@ -140,11 +148,12 @@ class PromoPlayerView: NSView {
     
     // MARK: - NSView overrides
 
-    override func resizeSubviews(withOldSize oldSize: NSSize) {
-        super.resizeSubviews(withOldSize: oldSize)
+    override func layout() {
+        super.layout()
+        
         self.playerLayer?.frame = self.playerView.bounds
     }
- 
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
@@ -173,6 +182,9 @@ class PromoPlayerView: NSView {
         case "f":
             handled = true
             window?.toggleFullScreen(self)
+        case " ":
+            handled = true
+            self.toggle()
         default:
             break
         }
@@ -187,14 +199,14 @@ class PromoPlayerView: NSView {
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         var result: NSDragOperation = []
         if let delegate = delegate {
-            result = delegate.draggingEntered(forDragDestinationView: self, sender: sender)
+            result = delegate.draggingEntered(forView: self, sender: sender)
             isHighlighted = (result != [])
         }
         return result
     }
 
     override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return delegate?.performDragOperation(forDragDestinationView: self, sender: sender) ?? true
+        return delegate?.performDragOperation(forView: self, sender: sender) ?? true
     }
     
     override func draggingExited(_ sender: NSDraggingInfo?) {

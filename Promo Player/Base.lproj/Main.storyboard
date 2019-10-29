@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +676,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Promo_Player" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -683,8 +686,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="RBT Promo Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -700,14 +703,54 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Delegate-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Promo_Player" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="noF-PX-mFX" customClass="PromoPlayerView" customModule="Promo_Player" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <subviews>
+                                    <avPlayerView controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-9j-ufj">
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                    </avPlayerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jNZ-9j-ufj" firstAttribute="top" secondItem="noF-PX-mFX" secondAttribute="top" id="7G0-cW-vaI"/>
+                                    <constraint firstAttribute="bottom" secondItem="jNZ-9j-ufj" secondAttribute="bottom" id="Eyy-7r-gq5"/>
+                                    <constraint firstAttribute="trailing" secondItem="jNZ-9j-ufj" secondAttribute="trailing" id="F7D-RQ-VPb"/>
+                                    <constraint firstItem="jNZ-9j-ufj" firstAttribute="leading" secondItem="noF-PX-mFX" secondAttribute="leading" id="jui-9m-gnn"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="nrT-XP-53S"/>
+                                    <outlet property="playerView" destination="jNZ-9j-ufj" id="nLC-eD-Rgs"/>
+                                </connections>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wG-mQ-qRq">
+                                <rect key="frame" x="147" y="127" width="187" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Drop videos to play in a loop..." id="h4h-CS-L0x">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="noF-PX-mFX" secondAttribute="bottom" id="4v3-se-iKg"/>
+                            <constraint firstItem="noF-PX-mFX" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="6qX-Fa-Z2I"/>
+                            <constraint firstItem="6wG-mQ-qRq" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="BQs-tN-gee"/>
+                            <constraint firstItem="6wG-mQ-qRq" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="b7e-EX-lY8"/>
+                            <constraint firstAttribute="trailing" secondItem="noF-PX-mFX" secondAttribute="trailing" id="f9L-5A-Otc"/>
+                            <constraint firstItem="noF-PX-mFX" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="yPp-F2-Mfx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="placeholderLabel" destination="6wG-mQ-qRq" id="uDR-uW-WsQ"/>
+                        <outlet property="promoPlayerView" destination="noF-PX-mFX" id="As4-Dd-22F"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
