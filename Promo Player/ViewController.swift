@@ -9,11 +9,11 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     @IBOutlet weak var promoPlayerView: PromoPlayerView!
-
-    @IBOutlet weak var placeholderLabel: NSTextField!
         
+    @IBOutlet weak var overlayView: OverlayView!
+    
     private lazy var workQueue: OperationQueue = {
         let providerQueue = OperationQueue()
         providerQueue.qualityOfService = .userInitiated
@@ -28,7 +28,7 @@ class ViewController: NSViewController {
     
     private func handleFile(at url: URL) {
         OperationQueue.main.addOperation {
-            self.placeholderLabel.isHidden = true
+            self.overlayView.isHidden = true
             self.promoPlayerView.add(url: url)
             self.promoPlayerView.play()
         }
@@ -83,5 +83,57 @@ extension ViewController: PromoPlayerViewDelegate {
         }
         
         return true
+    }
+}
+
+extension ViewController {
+    
+    override var acceptsFirstResponder: Bool {
+        return true
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        var handled = false
+        let characters = event.charactersIgnoringModifiers?.lowercased()
+        switch characters {
+            case "h":
+                overlayView.isHidden = false
+                handled = true
+            case "f":
+                NSApplication.shared.mainWindow?.toggleFullScreen(self)
+                handled = true
+            case "c":
+                NSCursor.setHiddenUntilMouseMoves(true)
+                handled = true
+            case "x":
+                promoPlayerView.clear()
+                handled = true
+            case " ":
+                promoPlayerView.togglePlay()
+                handled = true
+            case "q":
+                NSApp.terminate(self)
+                handled = true
+            default:
+                break
+        }
+        if !handled {
+            super.keyDown(with: event)
+        }
+    }
+
+    override func keyUp(with event: NSEvent) {
+        var handled = false
+        let characters = event.charactersIgnoringModifiers?.lowercased()
+        switch characters {
+            case "h":
+                overlayView.isHidden = promoPlayerView.isPlaying
+                handled = true
+            default:
+                break
+        }
+        if !handled {
+            super.keyDown(with: event)
+        }
     }
 }

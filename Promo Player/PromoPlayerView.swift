@@ -34,6 +34,7 @@ class PromoPlayerView: NSView {
     }
 
     var player: AVQueuePlayer?
+    
     lazy var playerLayer: AVPlayerLayer? = {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.playerView.bounds
@@ -43,10 +44,16 @@ class PromoPlayerView: NSView {
         return playerLayer
     }()
     
+    // MARK: Private functions
+        
     // MARK: Public properties
     
     public var isPlaying: Bool {
         return self.player?.rate.isEqual(to: 0) == false && self.player?.error == nil
+    }
+    
+    public var isInFullScreen: Bool {
+        return window?.styleMask.contains(.fullScreen) == true
     }
 
     // MARK: Public functions
@@ -69,7 +76,6 @@ class PromoPlayerView: NSView {
     }
         
     public func play() {
-        self.playerView!.isHidden = false
         self.player?.play()
     }
     
@@ -77,7 +83,7 @@ class PromoPlayerView: NSView {
         self.player?.pause()
     }
     
-    public func toggle() {
+    public func togglePlay() {
         if isPlaying {
             pause()
         }
@@ -172,41 +178,6 @@ class PromoPlayerView: NSView {
         }
     }
     
-    // MARK: - NSResponder overrides
-    
-    override var acceptsFirstResponder: Bool {
-        return true
-    }
-
-    override func keyDown(with event: NSEvent) {
-        var handled = false
-        
-        let characters = event.charactersIgnoringModifiers?.lowercased()
-        switch characters {
-        case "q":
-            handled = true
-            NSApp.terminate(self)
-        case "f":
-            handled = true
-            window?.toggleFullScreen(self)
-        case "c":
-            handled = true
-            NSCursor.setHiddenUntilMouseMoves(true)
-        case "x":
-            handled = true
-            self.clear()
-        case " ":
-            handled = true
-            self.toggle()
-        default:
-            break
-        }
-        
-        if !handled {
-            super.keyDown(with: event)
-        }
-    }
-
     // MARK: - NSDraggingDestination overrides
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
@@ -228,5 +199,11 @@ class PromoPlayerView: NSView {
     
     override func draggingEnded(_ sender: NSDraggingInfo) {
         isHighlighted = false
+    }
+    
+    // MARK: - NSResponder overrides
+    
+    override var acceptsFirstResponder: Bool {
+        return true
     }
 }

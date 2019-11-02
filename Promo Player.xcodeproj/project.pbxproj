@@ -12,8 +12,10 @@
 		B326885123674A2100249CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B326885023674A2100249CA6 /* Assets.xcassets */; };
 		B326885423674A2100249CA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B326885223674A2100249CA6 /* Main.storyboard */; };
 		B326885D236755B700249CA6 /* PromoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B326885C236755B700249CA6 /* PromoPlayerView.swift */; };
+		B35AE341236DCACB009E41B7 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35AE340236DCACB009E41B7 /* OverlayView.swift */; };
 		B3B1C69F236896C9001C640C /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B1C69E236896C9001C640C /* AVKit.framework */; };
 		B3B1C6A1236896E2001C640C /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B1C6A0236896E2001C640C /* AppKit.framework */; };
+		B3E5288B236D72F700F427B4 /* ScreenSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E5288A236D72F700F427B4 /* ScreenSleep.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +27,10 @@
 		B326885523674A2100249CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B326885623674A2100249CA6 /* Promo_Player.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Promo_Player.entitlements; sourceTree = "<group>"; };
 		B326885C236755B700249CA6 /* PromoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoPlayerView.swift; sourceTree = "<group>"; };
+		B35AE340236DCACB009E41B7 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		B3B1C69E236896C9001C640C /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		B3B1C6A0236896E2001C640C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B3E5288A236D72F700F427B4 /* ScreenSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSleep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +68,9 @@
 			children = (
 				B326884C23674A2100249CA6 /* AppDelegate.swift */,
 				B326884E23674A2100249CA6 /* ViewController.swift */,
+				B3E5288A236D72F700F427B4 /* ScreenSleep.swift */,
 				B326885C236755B700249CA6 /* PromoPlayerView.swift */,
+				B35AE340236DCACB009E41B7 /* OverlayView.swift */,
 				B326885023674A2100249CA6 /* Assets.xcassets */,
 				B326885223674A2100249CA6 /* Main.storyboard */,
 				B326885523674A2100249CA6 /* Info.plist */,
@@ -153,8 +159,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B326884F23674A2100249CA6 /* ViewController.swift in Sources */,
+				B3E5288B236D72F700F427B4 /* ScreenSleep.swift in Sources */,
 				B326885D236755B700249CA6 /* PromoPlayerView.swift in Sources */,
 				B326884D23674A2100249CA6 /* AppDelegate.swift in Sources */,
+				B35AE341236DCACB009E41B7 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +301,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = SJ4RVBA27V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Promo Player/Info.plist";
@@ -316,7 +324,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = SJ4RVBA27V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Promo Player/Info.plist";

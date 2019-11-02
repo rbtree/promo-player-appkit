@@ -9,10 +9,11 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        NSApplication.shared.mainWindow?.delegate = self
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -21,5 +22,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
+    }
+    
+    func windowDidEnterFullScreen(_ notification: Notification) {
+        NSCursor.setHiddenUntilMouseMoves(true)
+        _ = ScreenSleep.disable(reason: "Promo Player in Full Screen")
+    }
+    
+    func windowDidExitFullScreen(_ notification: Notification) {
+        NSCursor.setHiddenUntilMouseMoves(false)
+        _ = ScreenSleep.enable()
     }
 }

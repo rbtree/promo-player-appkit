@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.AVKitIBPlugin" version="15400"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -685,11 +685,12 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="RBT Promo Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <rect key="contentRect" x="632" y="381" width="480" height="270"/>
+                        <rect key="contentRect" x="632" y="381" width="520" height="320"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="520" height="320"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -707,22 +708,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Promo_Player" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wG-mQ-qRq">
-                                <rect key="frame" x="147" y="127" width="187" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Drop videos to play in a loop..." id="h4h-CS-L0x">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="noF-PX-mFX" customClass="PromoPlayerView" customModule="Promo_Player" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="520" height="320"/>
                                 <subviews>
-                                    <avPlayerView hidden="YES" controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-9j-ufj">
-                                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                    <avPlayerView controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-9j-ufj">
+                                        <rect key="frame" x="0.0" y="0.0" width="520" height="320"/>
                                     </avPlayerView>
                                 </subviews>
                                 <constraints>
@@ -736,22 +729,119 @@
                                     <outlet property="playerView" destination="jNZ-9j-ufj" id="nLC-eD-Rgs"/>
                                 </connections>
                             </customView>
+                            <customView wantsLayer="YES" canDrawConcurrently="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhK-8A-HLE" customClass="OverlayView" customModule="Promo_Player" customModuleProvider="target">
+                                <rect key="frame" x="37" y="34" width="447" height="232"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-RQ-Qsp">
+                                        <rect key="frame" x="180" y="196" width="87" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Instructions" id="waR-8Z-1do">
+                                            <font key="font" metaFont="systemBold"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5EY-jK-1FR">
+                                        <rect key="frame" x="18" y="156" width="380" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Drop one or more video files into this window to play in a loop." id="5wT-ib-f1e">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0sQ-tn-Wl8">
+                                        <rect key="frame" x="18" y="92" width="247" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="'h' – Hold to display Instructions overlay." id="et9-gO-aIR">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kgO-QF-ljT">
+                                        <rect key="frame" x="18" y="68" width="411" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="'f' – Toggle full-screen (hides cursor and prevents computer sleep)." id="zLb-EM-XLX">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dpn-HM-ctg">
+                                        <rect key="frame" x="18" y="44" width="222" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="'c' – Hide cursor until mouse moves." id="hXv-wc-Gyk">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-HV-0f5">
+                                        <rect key="frame" x="18" y="20" width="61" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="'q' – Quit." id="BQX-3l-rp1">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="72g-ts-xtq">
+                                        <rect key="frame" x="18" y="116" width="77" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Commands:" id="Bi0-g7-k4y">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dpn-HM-ctg" secondAttribute="trailing" constant="20" symbolic="YES" id="05i-FM-7WM"/>
+                                    <constraint firstItem="5EY-jK-1FR" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="255-M0-PaN"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0sQ-tn-Wl8" secondAttribute="trailing" constant="20" symbolic="YES" id="4SP-JH-UUs"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cIO-HV-0f5" secondAttribute="trailing" constant="20" symbolic="YES" id="5JZ-7F-jyf"/>
+                                    <constraint firstItem="Dpn-HM-ctg" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="5m5-91-Bc0"/>
+                                    <constraint firstItem="Dpn-HM-ctg" firstAttribute="top" secondItem="kgO-QF-ljT" secondAttribute="bottom" constant="8" id="8Wd-On-PS3"/>
+                                    <constraint firstItem="72g-ts-xtq" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="Mys-Be-Mvo"/>
+                                    <constraint firstItem="cIO-HV-0f5" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="OhO-gU-pBy"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5EY-jK-1FR" secondAttribute="trailing" constant="20" symbolic="YES" id="Q7X-Y7-ClD"/>
+                                    <constraint firstItem="cIO-HV-0f5" firstAttribute="top" secondItem="Dpn-HM-ctg" secondAttribute="bottom" constant="8" id="Q7p-Al-ygV"/>
+                                    <constraint firstItem="kgO-QF-ljT" firstAttribute="top" secondItem="0sQ-tn-Wl8" secondAttribute="bottom" constant="8" id="R6J-Yt-abF"/>
+                                    <constraint firstItem="5EY-jK-1FR" firstAttribute="top" secondItem="7hz-RQ-Qsp" secondAttribute="bottom" constant="24" id="RjX-aW-R23"/>
+                                    <constraint firstItem="7hz-RQ-Qsp" firstAttribute="centerX" secondItem="kgO-QF-ljT" secondAttribute="centerX" id="UeL-VB-wT2"/>
+                                    <constraint firstItem="0sQ-tn-Wl8" firstAttribute="top" secondItem="72g-ts-xtq" secondAttribute="bottom" constant="8" id="WCf-N9-RKc"/>
+                                    <constraint firstItem="0sQ-tn-Wl8" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="Zso-c4-MVR"/>
+                                    <constraint firstAttribute="bottom" secondItem="cIO-HV-0f5" secondAttribute="bottom" constant="20" id="Zvm-Rx-hvr"/>
+                                    <constraint firstItem="7hz-RQ-Qsp" firstAttribute="centerX" secondItem="fhK-8A-HLE" secondAttribute="centerX" id="apf-Yc-V8S"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kgO-QF-ljT" secondAttribute="trailing" constant="20" symbolic="YES" id="bw7-1h-3gR"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="72g-ts-xtq" secondAttribute="trailing" constant="20" symbolic="YES" id="nvN-TS-YEf"/>
+                                    <constraint firstItem="kgO-QF-ljT" firstAttribute="leading" secondItem="fhK-8A-HLE" secondAttribute="leading" constant="20" id="rsh-QT-jYu"/>
+                                    <constraint firstItem="7hz-RQ-Qsp" firstAttribute="top" secondItem="fhK-8A-HLE" secondAttribute="top" constant="20" id="wb9-2U-mBo"/>
+                                    <constraint firstItem="72g-ts-xtq" firstAttribute="top" secondItem="5EY-jK-1FR" secondAttribute="bottom" constant="24" id="yld-Do-Rqc"/>
+                                </constraints>
+                                <shadow key="shadow" blurRadius="2">
+                                    <color key="color" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </shadow>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="noF-PX-mFX" secondAttribute="bottom" id="4v3-se-iKg"/>
                             <constraint firstItem="noF-PX-mFX" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="6qX-Fa-Z2I"/>
-                            <constraint firstItem="6wG-mQ-qRq" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="BQs-tN-gee"/>
-                            <constraint firstItem="6wG-mQ-qRq" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="b7e-EX-lY8"/>
+                            <constraint firstItem="fhK-8A-HLE" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="IZm-aM-BUh"/>
                             <constraint firstAttribute="trailing" secondItem="noF-PX-mFX" secondAttribute="trailing" id="f9L-5A-Otc"/>
+                            <constraint firstItem="fhK-8A-HLE" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" constant="10" id="wfD-ah-vcA"/>
                             <constraint firstItem="noF-PX-mFX" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="yPp-F2-Mfx"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="placeholderLabel" destination="6wG-mQ-qRq" id="uDR-uW-WsQ"/>
+                        <outlet property="overlayView" destination="fhK-8A-HLE" id="CQr-BW-YY6"/>
                         <outlet property="promoPlayerView" destination="noF-PX-mFX" id="As4-Dd-22F"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Ejo-Dd-qJG"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
