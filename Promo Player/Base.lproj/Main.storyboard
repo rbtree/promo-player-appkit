@@ -714,7 +714,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="noF-PX-mFX" customClass="PromoPlayerView" customModule="Promo_Player" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="520" height="320"/>
                                 <subviews>
-                                    <avPlayerView controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-9j-ufj">
+                                    <avPlayerView hidden="YES" controlsStyle="none" translatesAutoresizingMaskIntoConstraints="NO" id="jNZ-9j-ufj">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="320"/>
                                     </avPlayerView>
                                 </subviews>
@@ -813,7 +813,7 @@
                                     <constraint firstItem="7hz-RQ-Qsp" firstAttribute="top" secondItem="fhK-8A-HLE" secondAttribute="top" constant="20" id="wb9-2U-mBo"/>
                                     <constraint firstItem="72g-ts-xtq" firstAttribute="top" secondItem="5EY-jK-1FR" secondAttribute="bottom" constant="24" id="yld-Do-Rqc"/>
                                 </constraints>
-                                <shadow key="shadow" blurRadius="2">
+                                <shadow key="shadow" blurRadius="1">
                                     <color key="color" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </shadow>
                                 <userDefinedRuntimeAttributes>
@@ -821,7 +821,7 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="value" white="0.5" alpha="0.20029734924791834" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>

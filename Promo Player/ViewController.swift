@@ -107,6 +107,8 @@ extension ViewController {
                 handled = true
             case "x":
                 promoPlayerView.clear()
+                // Re-display Instructions overlay
+                overlayView.isHidden = false
                 handled = true
             case " ":
                 promoPlayerView.togglePlay()
@@ -127,7 +129,8 @@ extension ViewController {
         let characters = event.charactersIgnoringModifiers?.lowercased()
         switch characters {
             case "h":
-                overlayView.isHidden = promoPlayerView.isPlaying
+                // Hide only if at least one video loaded
+                overlayView.isHidden = promoPlayerView.count > 0
                 handled = true
             default:
                 break

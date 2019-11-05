@@ -55,11 +55,18 @@ class PromoPlayerView: NSView {
     public var isInFullScreen: Bool {
         return window?.styleMask.contains(.fullScreen) == true
     }
+    
+    public var count: Int {
+        get {
+            return self.player?.items().count ?? 0
+        }
+    }
 
     // MARK: Public functions
     
     public func clear() {
         self.player?.removeAllItems()
+        self.playerView!.isHidden = true
     }
     
     public func add(urls: [URL]) {
@@ -77,6 +84,7 @@ class PromoPlayerView: NSView {
         
     public func play() {
         self.player?.play()
+        self.playerView!.isHidden = false
     }
     
     public func pause() {
@@ -87,7 +95,7 @@ class PromoPlayerView: NSView {
         if isPlaying {
             pause()
         }
-        else {
+        else if count > 0 {
             play()
         }
     }
